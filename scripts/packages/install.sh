@@ -10,12 +10,16 @@ PACKAGES=(
     # Browser
     "brave-bin"
 
+    # System utilities for Hyprland monitor management
+    "socat"  # Required for monitor event listener
+    "jq"     # Required for monitor overlap detection
+
     # Development tools
     # "git"
     # "neovim"
     # "tmux"
 
-    # System utilities
+    # Additional system utilities
     # "htop"
     # "ripgrep"
     # "fd"

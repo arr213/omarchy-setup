@@ -16,6 +16,7 @@ NC='\033[0m' # No Color
 # Component installation order
 COMPONENTS=(
     "packages"
+    "hyprland-plugins"
     "monitors"
     "themes"
     "1password"

@@ -34,11 +34,17 @@ Dynamic monitor management for Hyprland - automatically positions monitors witho
 - Auto-detects connected monitors
 - Calculates proper positioning accounting for DPI scaling
 - Listens for monitor connect/disconnect events
-- Configures on startup
+- **Auto-detects and fixes overlapping monitors** (checks every 5 seconds)
+- **Retry logic** (10s, 30s, 60s) to handle race conditions after monitor changes
+- Configures on startup and after config reloads
+
+**Dependencies:** `socat`, `jq` (auto-installed via packages component)
 
 **Customize:** Edit `~/.local/share/hyprland-scripts/auto-monitor-layout.sh` after installation:
-- `MONITOR_PREFS`: Set resolution, refresh rate, and scale
-- `MONITOR_ORDER`: Define left-to-right monitor order
+- `MONITOR_PREFS`: Set resolution, refresh rate, and scale for each monitor
+- `MONITOR_ORDER`: Define top-to-bottom monitor positioning order
+
+**Touchpad Gestures:** See `scripts/monitors/GESTURES.md` for 3-finger swipe setup
 
 **Manual commands:**
 ```bash

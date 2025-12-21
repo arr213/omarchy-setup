@@ -1,17 +1,19 @@
 #!/bin/bash
 # Auto-configure Hyprland monitor layout based on connected displays
-# This script detects connected monitors and positions them left-to-right automatically
+# This script detects connected monitors and positions them top-to-bottom automatically
 
 # Monitor preferences (resolution@refresh, scale)
 declare -A MONITOR_PREFS=(
-    ["eDP-1"]="1920x1200@60,1.25"
-    ["HDMI-A-1"]="3840x2160@60,2"
-    ["DP-8"]="1920x1080@60,1.25"
-    ["DP-9"]="1920x1080@60,1.25"
+    ["eDP-1"]="1920x1200@60,1.67"
+    ["DP-1"]="3840x2160@60,3"
+    ["DP-2"]="3840x2160@60,3"
+    ["HDMI-A-1"]="3840x2160@60,3"
+    ["DP-8"]="1920x1080@60,1.67"
+    ["DP-9"]="1920x1080@60,1.67"
 )
 
-# Priority order (leftmost to rightmost)
-MONITOR_ORDER=("eDP-1" "DP-8" "DP-9" "HDMI-A-1")
+# Priority order (top to bottom)
+MONITOR_ORDER=("DP-1" "DP-2" "HDMI-A-1" "eDP-1" "DP-8" "DP-9")
 
 # Get list of connected monitors
 mapfile -t CONNECTED < <(hyprctl monitors -j | jq -r '.[].name')
@@ -32,14 +34,14 @@ for monitor in "${MONITOR_ORDER[@]}"; do
         IFS=',' read -r resolution scale <<< "$prefs"
 
         # Apply monitor configuration
-        echo "Configuring $monitor at position ${position}x0 with scale $scale"
-        hyprctl keyword monitor "$monitor,$resolution,${position}x0,$scale"
+        echo "Configuring $monitor at position 0x${position} with scale $scale"
+        hyprctl keyword monitor "$monitor,$resolution,0x${position},$scale"
 
-        # Calculate next position (resolution width / scale)
-        width=$(echo "$resolution" | cut -d'x' -f1 | cut -d'@' -f1)
+        # Calculate next position (resolution height / scale)
+        height=$(echo "$resolution" | cut -d'x' -f2 | cut -d'@' -f1)
         # Use awk for floating point division
-        effective_width=$(awk "BEGIN {printf \"%.0f\", $width / $scale}")
-        position=$((position + effective_width))
+        effective_height=$(awk "BEGIN {printf \"%.0f\", $height / $scale}")
+        position=$((position + effective_height))
     fi
 done
 
