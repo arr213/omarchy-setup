@@ -25,7 +25,14 @@ cd ~/code/workstation_setup
 ### 📦 Packages (`scripts/packages/`)
 Install/uninstall development tools and system utilities.
 
-Edit `scripts/packages/install.sh` to define your package list.
+**Included packages:**
+- **Communication:** Signal, Spotify
+- **Development:** Docker, Docker Compose
+- **System utilities:** socat, jq
+- **Browser:** Brave
+- **AI Tools:** Claude Desktop (AUR), Claude Code (manual install)
+
+Edit `scripts/packages/install.sh` to customize your package list.
 
 ### 🖥️ Monitors (`scripts/monitors/`)
 Dynamic monitor management for Hyprland - automatically positions monitors without gaps based on which displays are connected.
@@ -54,6 +61,18 @@ Dynamic monitor management for Hyprland - automatically positions monitors witho
 # Check current monitors
 hyprctl monitors
 ```
+
+### 🌐 Webapps (`scripts/webapps/`)
+Keyboard shortcuts for frequently used web applications.
+
+**Included shortcuts:**
+- `SUPER + SHIFT + ;` - Fastmail
+- `SUPER + SHIFT + ALT + ;` - Protonmail
+- `SUPER + SHIFT + A` - ChatGPT
+- `SUPER + SHIFT + ALT + A` - Claude.ai
+- `SUPER + SHIFT + ALT + G` - WhatsApp
+
+These use Omarchy's webapp launcher to open apps in dedicated windows. Customize in `~/.config/hypr/webapps.conf` after installation.
 
 ### 🎨 Themes (`scripts/themes/`)
 GTK themes, icon packs, cursor themes, and color schemes.
@@ -107,10 +126,14 @@ workstation_setup/
 │   │   ├── install.sh                  # Monitor setup installer
 │   │   ├── uninstall.sh                # Monitor setup remover
 │   │   ├── auto-monitor-layout.sh      # Dynamic layout script
-│   │   └── monitor-event-listener.sh   # Event handler
+│   │   ├── monitor-event-listener.sh   # Event handler
+│   │   └── GESTURES.md                 # Touchpad gestures guide
 │   ├── packages/
 │   │   ├── install.sh                  # Package installer
 │   │   └── uninstall.sh                # Package remover
+│   ├── webapps/
+│   │   ├── install.sh                  # Webapp shortcuts installer
+│   │   └── uninstall.sh                # Webapp shortcuts remover
 │   ├── themes/
 │   │   └── install.sh                  # Theme setup
 │   ├── 1password/

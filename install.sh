@@ -18,6 +18,7 @@ COMPONENTS=(
     "packages"
     "hyprland-plugins"
     "monitors"
+    "webapps"
     "themes"
     "1password"
     "defaults"

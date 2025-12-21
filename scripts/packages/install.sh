@@ -14,10 +14,20 @@ PACKAGES=(
     "socat"  # Required for monitor event listener
     "jq"     # Required for monitor overlap detection
 
+    # Communication & Productivity
+    "signal-desktop"
+    "spotify"
+
     # Development tools
+    "docker"
+    "docker-compose"
     # "git"
     # "neovim"
     # "tmux"
+
+    # AI Tools (AUR packages - requires yay or paru)
+    # "claude-desktop"
+    # claude-code installed via: curl -fsSL https://claude.com/install.sh | bash
 
     # Additional system utilities
     # "htop"
