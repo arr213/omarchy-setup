@@ -6,7 +6,7 @@ Modular installation scripts for setting up a complete Omarchy/Hyprland developm
 
 ```bash
 # Clone this repository
-git clone <your-repo-url> ~/code/workstation_setup
+git clone https://github.com/arr213/omarchy-setup.git ~/code/workstation_setup
 cd ~/code/workstation_setup
 
 # Install everything
