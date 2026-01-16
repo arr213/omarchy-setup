@@ -23,8 +23,10 @@ mkdir -p "$INSTALL_DIR"
 echo "   Copying scripts to $INSTALL_DIR..."
 cp "$SCRIPT_DIR/auto-monitor-layout.sh" "$INSTALL_DIR/"
 cp "$SCRIPT_DIR/monitor-event-listener.sh" "$INSTALL_DIR/"
+cp "$SCRIPT_DIR/fix-displays.sh" "$INSTALL_DIR/"
 chmod +x "$INSTALL_DIR/auto-monitor-layout.sh"
 chmod +x "$INSTALL_DIR/monitor-event-listener.sh"
+chmod +x "$INSTALL_DIR/fix-displays.sh"
 
 # Backup and update monitors.conf
 if [ -f "$HYPR_CONFIG/monitors.conf" ]; then
@@ -52,6 +54,22 @@ if ! grep -q "monitor-event-listener.sh" "$HYPR_CONFIG/autostart.conf" 2>/dev/nu
     echo "# Auto-configure monitor layout on connect/disconnect" >> "$HYPR_CONFIG/autostart.conf"
     echo "$AUTOSTART_LINE" >> "$HYPR_CONFIG/autostart.conf"
     echo "   Added to autostart"
+fi
+
+# Add display fix keybinding
+KEYBIND_FILE="$HYPR_CONFIG/bindings.conf"
+KEYBIND_LINE="bindd = SUPER, F5, Fix displays, exec, $INSTALL_DIR/fix-displays.sh"
+if [ -f "$KEYBIND_FILE" ]; then
+    if ! grep -q "fix-displays.sh" "$KEYBIND_FILE" 2>/dev/null; then
+        echo "" >> "$KEYBIND_FILE"
+        echo "# Display fix (handles GPU freezes, monitor layout, scaling issues)" >> "$KEYBIND_FILE"
+        echo "$KEYBIND_LINE" >> "$KEYBIND_FILE"
+        echo "   Added keybinding: SUPER+F5"
+    fi
+else
+    echo "   ⚠️  Keybindings file not found at $KEYBIND_FILE"
+    echo "   Add this line to your Hyprland config manually:"
+    echo "   $KEYBIND_LINE"
 fi
 
 # Run initial layout

@@ -21,6 +21,13 @@ Workstation setup scripts and configurations for Hyprland on Arch Linux, focusin
 - Triggers layout script on `monitoradded` and `monitorremoved` events
 - Runs on startup via `~/.config/hypr/autostart.conf`
 
+**Display Fix Script** (`scripts/fix-displays.sh`):
+- Comprehensive troubleshooting tool for display issues
+- Handles GPU freezes by toggling DPMS
+- Fixes monitor layout and scaling problems
+- Restarts display-related services (waybar)
+- Bound to `SUPER+F5` keyboard shortcut
+
 **Key Design Decisions**:
 - Uses dynamic detection rather than static config to handle multiple monitor setups
 - Positions calculated in effective pixels (accounting for HiDPI scaling)
@@ -68,7 +75,12 @@ Each component has:
 
 **Monitor management** (after installation):
 ```bash
-~/.local/share/hyprland-scripts/auto-monitor-layout.sh  # Apply layout
+# Keyboard shortcut (recommended)
+SUPER+F5                                                 # Fix all display issues
+
+# Manual commands
+~/.local/share/hyprland-scripts/fix-displays.sh          # Fix display issues
+~/.local/share/hyprland-scripts/auto-monitor-layout.sh  # Apply layout only
 hyprctl monitors                                         # Check monitors
 ```
 

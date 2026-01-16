@@ -14,7 +14,7 @@ fi
 # Plugin repositories
 PLUGINS=(
     "https://github.com/hyprwm/hyprland-plugins|hyprbars"
-    "https://github.com/hyprwm/hyprland-plugins|hyperexpo"
+    "https://github.com/hyprwm/hyprland-plugins|hyprexpo"
     "https://github.com/VortexCoyote/hyperfocus"
     "https://github.com/dawsers/hyprscroller"
 )
@@ -50,7 +50,7 @@ echo "✅ Hyprland plugins installed"
 echo ""
 echo "📝 Installed plugins:"
 echo "   • hyprbars    - Window title bars for Hyprland"
-echo "   • hyperexpo   - Workspace overview/expo"
+echo "   • hyprexpo    - Workspace overview/expo"
 echo "   • hyperfocus  - Dim/blur unfocused windows"
 echo "   • hyprscroller - Better workspace scrolling"
 echo ""
